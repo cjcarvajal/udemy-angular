@@ -1,0 +1,172 @@
+- Javascript change the dom, is faster than talk to the server.
+- Angular 5 did not include breaking changes Angular 4
+- Angular.js -> Angular 1
+- Angular 2 rewrite Angular.js and is the stack called as angular
+- Angular uses typescript so it is no enough to edit jacvascript and html on a text editor.
+
+
+Create a project:
+
+- ng new my-first-app
+- Install angular framework
+
+Run a Project:
+- ng serve
+- Compile typescript to Javascript
+-
+
+All code should be in app folder
+
+- app.component is the root component.
+
+----------------------------------------------------------------------------------------------
+Basics on Angular
+----------------------------------------------------------------------------------------------
+
+TypeScript: Superset of javascript
+- Strong typing.
+- Write checked code.
+- Compiled to Javascript in cli.
+
+Using bootstrap:
+npm install --save bootstrap
+edit .angular-cli.json
+
+----------------------------------------------------------------------------------------------
+Components and databindings
+----------------------------------------------------------------------------------------------
+The index.html is served by angular
+<app-root> is a component which tie together our app
+app.component.html tiene el codigo html que queremos mostrar
+app.component.ts tiene el codigo typescript
+@Component 
+	selector = tiene el nombre del tag en el html y reemplaza el contenido con el archivo component.html
+
+En el html servido hay javascript inyectados por el cli, que crea bundles. Son ejecutados y de primeras
+ejecuta el main.ts.
+
+main.ts ejecuta bootstrap invocando AppModule.
+AppModule en bootstrap[] registra los componentes.
+
+Build components!!!
+	- Templates
+	- Style
+	- Business app
+
+Not crunching all in the same file.
+
+Component folder created under app folder.
+Naming : nombre del componente . component .ts
+Es una clase de TypeScript
+export class permite usar la clase por fuera
+@Component le dice a angular que no es una clase cualquiera
+Esta anotacion debe recibir un objeto javascript para ser configurado:
+	selector: nombre para que el componente sea referido.
+	template: Html para el componente
+
+Modules bind components into packages
+Only in bigger app its okey to create more modules
+Moduls gives information to angular about the app
+Should have @NgModule
+Los componentes deben ser registrados en el modulo
+El componente debe ser registrado en declarations
+
+Se pueden crear componentes con ng cli
+ng generate component ________
+ng g c ________
+Crea todo como carpetas y registra el componente
+
+Con template en vez de templateUrl se puede definir el html dentro del componente
+template: '<app-server></app-server><app-server></app-server>'
+
+Mas de tres lineas de codigo es mejor usar templateUrl
+
+Los estilos de un componente se pueden realizar con: styleUrls o styles
+
+Selector puede ser atributo poniendo entre []
+selector: [app-servers] ahora puede ser incluido como atributo de div:
+	<div app-servers></div>
+selector: .app-servers ahora puede ser incluido como clase:
+	<div class="app-servers"></div>
+
+Tipicamente se usa selector por elemento.
+
+El binding funciona de manera normal como en versiones antiguas de Angular. Para usar {{}} solo
+se debe hacer binding a strings o cosas que se puedan convertir en Strings.
+
+Se usan [] para hacer binding de propiedades nativas de elementos html tal como disabled.
+
+No mezclar property binding  [] con string extrapolation {{}}
+
+Para event Binding se usa (), se debe poner en el nombre del evento no del metodo es decir:
+
+onClick = (click)
+onMouseEnter = (mouseEnter)
+
+(click)=" aca va el codigo"
+
+Si quiero pasar al componente el dato del html se debe usar $event, solo se puede usar en el
+template.html dentro del event binding: 
+
+<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+
+Para lograr un binding en dos vias se usa la conocida directiva ngModel. Se debe importar 
+angular/forms.
+----------------------------------------------------------------------------------------------
+Directives
+----------------------------------------------------------------------------------------------
+
+Instructions in the DOM.
+ngIf es el ejemplo de una directiva, esta requiere usar * al inicio debido a que es una
+directiva estructural.
+*ngIf
+
+Se puede usar ng-template que es un elemento opcional en el DOM, este elemento se marca con 
+#nombre y se muestra en combinación con el ngIf
+
+Attribute directives no agregan o quitan elementos, solo cambian el elemento donde se ubican.
+
+ngStyle por ejemplo es directiva de atributo.
+ngClass permite cambiar estilos css
+
+
+----------------------------------------------------------------------------------------------
+Services and Dependency Injection
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Routing
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Observables
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Forms
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Pipes
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Http
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Authentication
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Optimization & NgModules
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Deployment
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Animations and Testings
+----------------------------------------------------------------------------------------------
+
