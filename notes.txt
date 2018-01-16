@@ -129,7 +129,7 @@ Attribute directives no agregan o quitan elementos, solo cambian el elemento don
 ngStyle por ejemplo es directiva de atributo.
 ngClass permite cambiar estilos css
 
-
+Directivas de atributo deben ir entre []
 ----------------------------------------------------------------------------------------------
 Services and Dependency Injection
 ----------------------------------------------------------------------------------------------
