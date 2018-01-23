@@ -130,6 +130,57 @@ ngStyle por ejemplo es directiva de atributo.
 ngClass permite cambiar estilos css
 
 Directivas de atributo deben ir entre []
+
+@Input() permite que una propiedad sea modificada por los padres del componente donde se
+declaran, asi un componente puede settear la propiedad de los hijos.
+
+Dentro de ngFor se puede recorrer un array y pasarselo a un componente con [nombre de propiedad]
+Se puede asignar un alias a las propiedades para que sean usadas en el html con el decorador
+
+@Input('alias')
+
+Para informar al padre de los eventos de los componentes hijos, se debe usar EventEmitter y 
+@Output
+
+A @Ouput tambien se le puede asignar un alias como Input
+
+El evento creado en el componente se debe referenciar en el template dentro del componente:
+
+(evento)="funcion($data)"
+
+Angular hace que los estilos css sean aplicados solo para los componentes donde se definen
+
+Para atar referencias locales al codigo se usa:
+@ViewChild() poniendo en el alias el nombre del selector o del componente, solo funciona hacia
+una via.
+
+Se usa # para hacer referencias locales en los elementos html.
+
+<ng-content></ng-content> agrega contenido al DOM, contenido que se ponga entre los tags de
+un componente.
+
+Las fases que ejecuta Angular para iniciar un componente son:
+
+- ngOnChanges: Al inicio y cuando una propiedad con @Input cambia.
+- ngOnInit: Cuando el componente se inicializa.
+- ngDoCheck: Cambios en el template o en el componente, buen metodo para hacer algo en cada
+  cambio.
+- ngAfterContentInit: Despues de que ng-content ha sido proyectado.
+- ngAfterContentChecked: Cuando el contenido proyectado cambia.
+- ngAfterViewInit: Despues de que la vista de componente y los hijos han sido inicializados.
+- ngAfterViewChecked
+- ngOnDestroy: Justo antes de que sea destruido.
+
+Cuando se usen estos hooks, deberia añadirse el metodo al implements del componente.
+
+Se puede usar @ContentChild para referise a elementos proyectados con ng-content
+
+----------------------------------------------------------------------------------------------
+Debug
+----------------------------------------------------------------------------------------------
+Se puede ver el codigo fuente dentro de webpack en el developer tools
+Augury
+
 ----------------------------------------------------------------------------------------------
 Services and Dependency Injection
 ----------------------------------------------------------------------------------------------
