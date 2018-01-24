@@ -31,6 +31,8 @@ TypeScript: Superset of javascript
 Using bootstrap:
 npm install --save bootstrap
 edit .angular-cli.json
+"styles":[] -> incluir ruta de bootstrap.css
+Probablemente sea ../node_modules/bootstrap/dist/css/bootstrap.min.css
 
 ----------------------------------------------------------------------------------------------
 Components and databindings
@@ -75,6 +77,8 @@ Se pueden crear componentes con ng cli
 ng generate component ________
 ng g c ________
 Crea todo como carpetas y registra el componente
+
+Si se quiere crear un componente dentro de una carpeta ya definida ng g c carpeta/	________
 
 Con template en vez de templateUrl se puede definir el html dentro del componente
 template: '<app-server></app-server><app-server></app-server>'
@@ -130,6 +134,10 @@ ngStyle por ejemplo es directiva de atributo.
 ngClass permite cambiar estilos css
 
 Directivas de atributo deben ir entre []
+
+*ngFor="let object of array; let i = index"
+<div>{{object}}</div>
+Recorre el array imprimiendo lo que tenga object en el div, ademas almacena en i el indice
 ----------------------------------------------------------------------------------------------
 Services and Dependency Injection
 ----------------------------------------------------------------------------------------------
