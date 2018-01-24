@@ -13,7 +13,6 @@ Create a project:
 Run a Project:
 - ng serve
 - Compile typescript to Javascript
--
 
 All code should be in app folder
 
@@ -138,6 +137,87 @@ Directivas de atributo deben ir entre []
 *ngFor="let object of array; let i = index"
 <div>{{object}}</div>
 Recorre el array imprimiendo lo que tenga object en el div, ademas almacena en i el indice
+
+@Input() permite que una propiedad sea modificada por los padres del componente donde se
+declaran, asi un componente puede settear la propiedad de los hijos.
+
+Dentro de ngFor se puede recorrer un array y pasarselo a un componente con [nombre de propiedad]
+Se puede asignar un alias a las propiedades para que sean usadas en el html con el decorador
+
+@Input('alias')
+
+Para informar al padre de los eventos de los componentes hijos, se debe usar EventEmitter y 
+@Output
+
+$event se refiere al dato emitido en un evento.
+
+A @Ouput tambien se le puede asignar un alias como Input
+
+El evento creado en el componente se debe referenciar en el template dentro del componente:
+
+(evento)="funcion($event)"
+
+Angular hace que los estilos css sean aplicados solo para los componentes donde se definen
+
+Para atar referencias locales al codigo se usa:
+@ViewChild() poniendo en el alias el nombre del selector o del componente, solo funciona hacia
+una via.
+
+Se usa # para hacer referencias locales en los elementos html.
+
+<ng-content></ng-content> agrega contenido al DOM, contenido que se ponga entre los tags de
+un componente.
+
+Las fases que ejecuta Angular para iniciar un componente son:
+
+- ngOnChanges: Al inicio y cuando una propiedad con @Input cambia.
+- ngOnInit: Cuando el componente se inicializa.
+- ngDoCheck: Cambios en el template o en el componente, buen metodo para hacer algo en cada
+  cambio.
+- ngAfterContentInit: Despues de que ng-content ha sido proyectado.
+- ngAfterContentChecked: Cuando el contenido proyectado cambia.
+- ngAfterViewInit: Despues de que la vista de componente y los hijos han sido inicializados.
+- ngAfterViewChecked
+- ngOnDestroy: Justo antes de que sea destruido.
+
+Cuando se usen estos hooks, deberia añadirse el metodo al implements del componente.
+
+Se puede usar @ContentChild para referise a elementos proyectados con ng-content
+
+Para crear directiva en una clase de typescript se le agrega @Directive
+	@Directive({
+		selector: '[appCamelCase]',
+	})
+
+En el constructor se recibe referencia al elemento que se decora:
+
+constructor(private elementRef: ElementRef)
+
+En los hooks, puede ser en el ngOnInit se realiza lo que se desee.
+No es buena practica acceder a los elementos del dom desde las directivas.
+
+Se pueden crear directivas con ng: ng g d _______
+
+La mejor forma de dar estilos con directivas es con Renderer2
+
+@HostListener permite ligar eventos dentro de una directiva.
+
+@HostListener('mouseenter') mouseover {}
+
+@HostBinding define el bind entre una propiedad decorada con la directiva:
+
+@HostBinding('style.backgroundColor') backgroundColor: string
+
+Se puede usar @Input dentro de las directivas poniendo la propiedad donde esta la directiva:
+[]
+
+ngSwitch es estructural y permite definir n opciones donde solo una se ejecuta (como en cualquier
+lenguje)
+----------------------------------------------------------------------------------------------
+Debug
+----------------------------------------------------------------------------------------------
+Se puede ver el codigo fuente dentro de webpack en el developer tools
+Augury
 ----------------------------------------------------------------------------------------------
 Services and Dependency Injection
 ----------------------------------------------------------------------------------------------
