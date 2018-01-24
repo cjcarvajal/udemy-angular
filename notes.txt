@@ -142,11 +142,13 @@ Se puede asignar un alias a las propiedades para que sean usadas en el html con 
 Para informar al padre de los eventos de los componentes hijos, se debe usar EventEmitter y 
 @Output
 
+$event se refiere al dato emitido en un evento.
+
 A @Ouput tambien se le puede asignar un alias como Input
 
 El evento creado en el componente se debe referenciar en el template dentro del componente:
 
-(evento)="funcion($data)"
+(evento)="funcion($event)"
 
 Angular hace que los estilos css sean aplicados solo para los componentes donde se definen
 
@@ -175,6 +177,35 @@ Cuando se usen estos hooks, deberia añadirse el metodo al implements del compon
 
 Se puede usar @ContentChild para referise a elementos proyectados con ng-content
 
+Para crear directiva en una clase de typescript se le agrega @Directive
+	@Directive({
+		selector: '[appCamelCase]',
+	})
+
+En el constructor se recibe referencia al elemento que se decora:
+
+constructor(private elementRef: ElementRef)
+
+En los hooks, puede ser en el ngOnInit se realiza lo que se desee.
+No es buena practica acceder a los elementos del dom desde las directivas.
+
+Se pueden crear directivas con ng: ng g d _______
+
+La mejor forma de dar estilos con directivas es con Renderer2
+
+@HostListener permite ligar eventos dentro de una directiva.
+
+@HostListener('mouseenter') mouseover {}
+
+@HostBinding define el bind entre una propiedad decorada con la directiva:
+
+@HostBinding('style.backgroundColor') backgroundColor: string
+
+Se puede usar @Input dentro de las directivas poniendo la propiedad donde esta la directiva:
+[]
+
+ngSwitch es estructural y permite definir n opciones donde solo una se ejecuta (como en cualquier
+lenguje)
 ----------------------------------------------------------------------------------------------
 Debug
 ----------------------------------------------------------------------------------------------
