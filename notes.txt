@@ -222,9 +222,31 @@ Augury
 Services and Dependency Injection
 ----------------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+Es posible inyectar servicios dentro de servicios si se pone a nivel de modulo. Solo es
+necesario declararlo en el constructor:
+
+constructor (private logginService: LoggingService)
+
+Es necesaio usar la etiqueta @Injectable() donde se quiere inyectar algo.
+
+Se pueden emitir eventos de un servicio y mediante subscribe recibirlos, dentro de subscribe
+se pueden definir la función anonima que resolvera el evento.
 ----------------------------------------------------------------------------------------------
 Routing
 ----------------------------------------------------------------------------------------------
+
+Muchas paginas pero manteniendo el funcionamiento single page.
+Cargar componentes dinamicamente al dar click en links, sin usar ngIf
 
 ----------------------------------------------------------------------------------------------
 Observables
