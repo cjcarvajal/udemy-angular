@@ -247,6 +247,89 @@ Any other component: The component and all its childs
 Routing
 ----------------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+Si se realiza update de la pagina en la navegación se pierde el estado por lo tanto, no esta 
+bien poner los links en los hrefs para apuntar a una pagina del router. La forma correcta de
+hacerlo es usnado la directiva:
+
+routerLink="/"
+
+Si se usa un String en routerLink sin '/' indica que es un path relativo a la pagina donde se 
+encuentra la app, haciendo append a la url actual. Usando '/' quiere decir que es path absoluto.
+
+Directiva routerLinkActive define la clase del link para el estilo.
+
+¿Como cargar de manera programatica?
+
+Se inyecta el Router en el constructor:
+
+constructor(private router: Router)
+this.router.navigate([]); -> Recibe path absolutos de manera similar al ejemplo desde el
+template.
+
+El metodo navigate, no sabe en que ruta está.
+
+Se puede inyectar la ruta actual en el constructor:
+
+private route: ActivatedRoute
+
+¿Como pasar paremetros a las rutas?
+
+En la configuración de rutas del Modulo, se incluyen los parametros con :
+
+users/:id
+
+¿Como obtener los paremetros de las rutas?
+
+Se debe inyectar el ActivatedRoute
+
+route.snapshot.params['nombre_del_atributo']
+route.params.subscribe(
+	(params: Params) => {
+		params['nombre del parametro']
+	}
+);	
+
+Se deben destruir las subscripciones implementando OnDestroy, no es necesario en las rutas pero
+si en los observables.
+
+Con routerLink se puede construir la URL desde el template
+
+<a [routerLink]="['/users', 10, 'Anna']"></a> -> /users/10/Anna
+
+¿ Como usar query parameters?
+
+Desde el template:
+
+[routerLink] = "ruta"
+[queryParams] = "{objeto con los parameters}"
+
+En el componente se hace:
+
+this.router.navigate([], {queryParams:{parametros}})
+
+Para obtener los queryParameters:
+
+route.snapshot.queryParams;
+route.queryParams.subscribe();
+
+route-outlet define en que parte de un template se cargara el componente.
+
+Una buena practica es crear un modulo aparte donde se pondra el router de Angular
+
+Se deben proteger las paginas, para lo cual Angular tiene el concepto de "guards"
+
+export class AuthGuard implements CanActivate {}
+
+En la configuración del router se pone una propiedad canActivate y en un array se reciben
+los servicios (Guards)
 ----------------------------------------------------------------------------------------------
 Observables
 ----------------------------------------------------------------------------------------------
