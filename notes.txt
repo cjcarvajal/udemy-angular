@@ -221,16 +221,26 @@ Augury
 ----------------------------------------------------------------------------------------------
 Services and Dependency Injection
 ----------------------------------------------------------------------------------------------
+- Se crea una clase Typescript, no necesita ser decorada con @
+- Expone metodos comunes.
+- Se puede crear el servicio en el componente cliente instanciandolo simplemente, sin embargo
+  no se debe hacer asi, pues la forma de usar servicios es inyectarlos con dependency
+  injection.
+- Para usar inyección:
 
+constructor(private loggingService: LoggingService) {}
 
+Angular es quien genera los componentes. 
+Hay que decirle a Angular como crear los servicios, esto se hace en el @Component
 
+providers: [LoggingService]
 
+La inyección es jerarquica, haciendo que un Servicio quede disponible para un componente y
+todos sus hijos, compartiendo la misma instancia, los servicios se pueden inyectar en:
 
-
-
-
-
-
+AppModule: Application-Wide
+AppComponent: All components but not other services
+Any other component: The component and all its childs
 
 Es posible inyectar servicios dentro de servicios si se pone a nivel de modulo. Solo es
 necesario declararlo en el constructor:
