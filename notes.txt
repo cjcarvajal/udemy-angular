@@ -357,7 +357,25 @@ Forms
 ----------------------------------------------------------------------------------------------
 Pipes
 ----------------------------------------------------------------------------------------------
+Transform output in templates.
+Por ejemplo usar un string y que en el template se vea en mayuscula.
 
+<p>{{ username | uppercase}}</p>
+
+Los pipes se pueden encadenar.
+Son ejecutados de izquierda a derecha.
+
+Para crear un pipe se debe implementar PipeTransform y sobreescribir el metodo transform()
+Se debe decorar la clase con @Pipe donde se asigna el nombre.
+Se debe agregar a NGModule
+
+ng g p _______ Para generar el pipe
+
+Angular no corre de nuevo el pipe si cambia el dato donde se aplica, debido al costo en perfor
+mance que puede causar.
+
+Se puede forzar agregando al @Pipe  pure:false
+Con el pipe async se visualizan cambios en datos si se usa promise.
 ----------------------------------------------------------------------------------------------
 Http
 ----------------------------------------------------------------------------------------------
