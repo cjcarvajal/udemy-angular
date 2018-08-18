@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h2>Template Driven Form</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" required email class="form-control" ngModel #email="ngModel">
+          <span *ngIf="!email.valid && email.touched" class="help-block">Please enter a valid email address</span>
+        </div>
+        <div class="form-group">
+          <label for="subscription">Type of Subscription</label>
+          <select id="subscripton" class="form-control" [(ngModel)]="selectedSubscription" name="susbcription">
+            <option value="basic">Basic</option>
+            <option value="advanced">Advanced</option>
+            <option value="pro">Pro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" required class="form-control" ngModel #password="ngModel">
+          <span *ngIf="!password.valid && password.touched" class="help-block">Password is required</span>
+        </div>
+        <span *ngIf="!f.valid && f.touched" class="help-block">The form data is invalid</span>
+        <button [disabled] ="!f.valid" class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf="submitted">
+    <h3>User Input Data</h3>
+    <p>Email : {{inputEmail}}</p>
+    <p>Selected Plan: {{selectedSubscription}}</p>
+    <p>Password: Oh, that's secret I can't tell you that</p>
+  </div>
+</div>

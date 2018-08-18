@@ -349,11 +349,32 @@ los servicios (Guards)
 ----------------------------------------------------------------------------------------------
 Observables
 ----------------------------------------------------------------------------------------------
+Un observable puede enviar tres datos: normales, error y completados.
 
+Los subjects permiten emitir y oir.
+
+Los observables tienen operadores como streams, lo que permite encadenarlos.
+
+Los subjects deben ser dessubcritos debido a que ya no son manejados por Angular de manera
+automatica.
 ----------------------------------------------------------------------------------------------
 Forms
 ----------------------------------------------------------------------------------------------
 
+Template Driven
+
+Angular infiere el form a partir del html.
+
+Reactive Approach, el form se define en typescript pero da mas control.
+
+Se pueden usar referencias locales del formulario declarandola dentro de <form #f = "ngForm">
+
+Reactive Driven
+
+Se declara el Form dentro del componente typescript se asigna al template con [formGroup] y se
+ponen las validaciones en codigo.
+
+Con formGroupName permite agrupar controles.
 ----------------------------------------------------------------------------------------------
 Pipes
 ----------------------------------------------------------------------------------------------
